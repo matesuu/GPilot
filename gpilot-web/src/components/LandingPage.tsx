@@ -51,7 +51,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
           An interface for&nbsp;
           <span className="landing-accent">PolyG</span>
           <br />
-          that optimizes performance.
+          that optimizes LLM performance.
         </h1>
 
         <p className="landing-hero-sub">
