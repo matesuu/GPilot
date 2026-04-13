@@ -1,4 +1,4 @@
-import { Bot, Github, Zap, Database, Brain, ArrowRight, ChevronRight } from 'lucide-react';
+import { Bot, GitFork, Zap, Database, Brain, ArrowRight, ChevronRight } from 'lucide-react';
 import './LandingPage.css';
 
 interface LandingPageProps {
@@ -22,7 +22,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Github size={16} />
+            <GitFork size={16} />
             PolyG
           </a>
           <button className="landing-nav-cta" onClick={onLaunch}>
@@ -35,7 +35,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
       {/* ── Hero ── */}
       <section className="landing-hero">
         <div className="landing-badge">
-          <Github size={13} />
+          <GitFork size={13} />
           Powered by&nbsp;
           <a
             href="https://github.com/Liu-rj/PolyG/tree/main"
@@ -72,7 +72,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Github size={16} />
+            <GitFork size={16} />
             View PolyG on GitHub
           </a>
         </div>
@@ -154,7 +154,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
           </div>
 
           <div className="landing-feature-card">
-            <Github size={22} className="landing-feature-icon" />
+            <GitFork size={22} className="landing-feature-icon" />
             <h4>Open-source core</h4>
             <p>
               The retrieval engine is fully open on GitHub. Audit it, extend it,
@@ -191,7 +191,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
           rel="noopener noreferrer"
           className="landing-footer-link"
         >
-          <Github size={14} />
+          <GitFork size={14} />
           PolyG — github.com/Liu-rj/PolyG
         </a>
       </footer>
