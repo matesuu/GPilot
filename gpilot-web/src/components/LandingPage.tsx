@@ -91,51 +91,6 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
         </div>
       </section>
 
-      {/* ── Terminal demo ── */}
-      <section className="lp-demo">
-        <p className="lp-demo-label">how it works</p>
-
-        <div className="lp-terminal">
-          <div className="lp-terminal-header">
-            <span className="lp-terminal-dot" />
-            <span className="lp-terminal-dot" />
-            <span className="lp-terminal-dot" />
-            <span className="lp-terminal-title">gpilot</span>
-          </div>
-          <div className="lp-terminal-body">
-            <div className="lp-terminal-line">
-              <span className="lp-t-prompt">$ </span>
-              <span className="lp-t-cmd">gpilot --dataset docs</span>
-            </div>
-            <div className="lp-terminal-line">&nbsp;</div>
-            <div className="lp-terminal-line">
-              <span className="lp-t-prompt">&gt; </span>
-              <span className="lp-t-cmd">
-                What changed in the auth module last sprint?
-              </span>
-            </div>
-            <div className="lp-terminal-line">&nbsp;</div>
-            <div className="lp-terminal-line">
-              <span className="lp-t-accent">retrieving</span>
-              <span className="lp-t-out"> — querying PolyG graph index...</span>
-            </div>
-            <div className="lp-terminal-line">
-              <span className="lp-t-accent">ranking</span>
-              <span className="lp-t-out"> — 4 of 2,847 chunks selected</span>
-            </div>
-            <div className="lp-terminal-line">
-              <span className="lp-t-accent">injecting</span>
-              <span className="lp-t-out"> — 1,240 tokens into context window</span>
-            </div>
-            <div className="lp-terminal-line">
-              <span className="lp-t-accent">done</span>
-              <span className="lp-t-out"> — answer ready</span>
-              <span className="lp-t-cursor" />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Footer ── */}
       <footer className="lp-footer">
         <span className="lp-footer-left">© 2025 GPilot</span>
