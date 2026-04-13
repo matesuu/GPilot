@@ -49,7 +49,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
 
         <h1 className="landing-hero-title">
           An interface for&nbsp;
-          <span className="landing-accent">PolyGr</span>
+          <span className="landing-accent">PolyG</span>
           <br />
           that optimizes performance.
         </h1>
