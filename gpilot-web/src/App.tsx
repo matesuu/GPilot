@@ -1,10 +1,11 @@
 import { useState, useCallback } from 'react';
-import { Sidebar, ChatArea } from './components';
+import { Sidebar, ChatArea, LandingPage } from './components';
 import type { Chat, Dataset } from './types';
 import { DATASETS, generateId } from './types';
 import './App.css';
 
 function App() {
+  const [view, setView] = useState<'landing' | 'app'>('landing');
   const [chats, setChats] = useState<Chat[]>([]);
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -84,6 +85,10 @@ function App() {
       )
     );
   }, [selectedChatId]);
+
+  if (view === 'landing') {
+    return <LandingPage onLaunch={() => setView('app')} />;
+  }
 
   return (
     <div className="app">
