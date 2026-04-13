@@ -48,10 +48,10 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
         </div>
 
         <h1 className="landing-hero-title">
-          LLMs that actually&nbsp;
-          <span className="landing-accent">remember</span>
+          An interface for&nbsp;
+          <span className="landing-accent">PolyGr</span>
           <br />
-          everything.
+          that optimizes performance.
         </h1>
 
         <p className="landing-hero-sub">
