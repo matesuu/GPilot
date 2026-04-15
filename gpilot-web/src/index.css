@@ -1,17 +1,17 @@
 :root {
-  --text: #9ca3af;
-  --text-h: #f3f4f6;
-  --bg: #16171d;
-  --bg-secondary: #1e2028;
-  --bg-tertiary: #252830;
-  --border: #2e303a;
-  --code-bg: #1f2028;
-  --accent: #6366f1;
-  --accent-bg: rgba(99, 102, 241, 0.15);
-  --accent-border: rgba(99, 102, 241, 0.5);
-  --user-msg-bg: #2d3748;
-  --assistant-msg-bg: #252830;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --text: #a1a1aa;
+  --text-h: #f4f4f5;
+  --bg: #000000;
+  --bg-secondary: #0d0d0d;
+  --bg-tertiary: #171717;
+  --border: #2a1f3d;
+  --code-bg: #0d0d0d;
+  --accent: #a855f7;
+  --accent-bg: rgba(168, 85, 247, 0.12);
+  --accent-border: rgba(168, 85, 247, 0.45);
+  --user-msg-bg: #1a0f2e;
+  --assistant-msg-bg: #111111;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   --sidebar-width: 280px;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -107,7 +107,7 @@ body {
 }
 
 .new-chat-btn:hover {
-  background: #5558e3;
+  background: #9333ea;
 }
 
 .dataset-menu {
@@ -530,7 +530,7 @@ body {
 }
 
 .send-btn:hover:not(:disabled) {
-  background: #5558e3;
+  background: #9333ea;
 }
 
 .send-btn:disabled {
