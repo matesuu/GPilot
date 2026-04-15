@@ -1,0 +1,20 @@
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+python-dotenv>=1.0.0
+# PolyG is installed from /home/username/PolyG via `pip install -e .`
+# The packages below are its runtime deps that this server also needs:
+litellm
+openai
+tiktoken
+neo4j
+sentence-transformers
+networkx
+nano-vectordb
+hnswlib
+xxhash
+tenacity
+dspy-ai
+igraph
+graspologic
+transformers
+scipy

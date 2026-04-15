@@ -7,4 +7,14 @@ export default defineConfig({
   optimizeDeps: {
     include: ['lucide-react'],
   },
+  server: {
+    proxy: {
+      // During development, forward /api/* to the FastAPI backend
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 })
