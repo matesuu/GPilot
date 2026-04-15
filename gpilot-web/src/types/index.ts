@@ -21,11 +21,8 @@ export interface Chat {
 }
 
 export const DATASETS: Dataset[] = [
-  { id: 'general', name: 'General', icon: 'MessageSquare', color: '#2dd4bf' },
-  { id: 'code', name: 'Code', icon: 'Code', color: '#22c55e' },
-  { id: 'docs', name: 'Documentation', icon: 'FileText', color: '#f59e0b' },
-  { id: 'data', name: 'Data Analysis', icon: 'BarChart', color: '#ec4899' },
-  { id: 'science', name: 'Science', icon: 'FlaskConical', color: '#8b5cf6' },
+  { id: 'physics', name: 'Physics', icon: 'Atom', color: '#8b5cf6' },
+  { id: 'goodreads', name: 'Goodreads', icon: 'BookOpen', color: '#f59e0b' },
 ];
 
 export const generateId = () => Math.random().toString(36).substring(2, 11);

@@ -1,13 +1,10 @@
-import { MessageSquare, Code, FileText, BarChart, FlaskConical, ChevronDown } from 'lucide-react';
+import { Atom, BookOpen, ChevronDown } from 'lucide-react';
 import type { Dataset } from '../types';
 import { useState } from 'react';
 
 const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
-  MessageSquare,
-  Code,
-  FileText,
-  BarChart,
-  FlaskConical,
+  Atom,
+  BookOpen,
 };
 
 interface DatasetTabProps {
@@ -18,7 +15,7 @@ interface DatasetTabProps {
 
 export function DatasetTab({ dataset, onDatasetChange, datasets }: DatasetTabProps) {
   const [showMenu, setShowMenu] = useState(false);
-  const Icon = iconMap[dataset.icon] || MessageSquare;
+  const Icon = iconMap[dataset.icon] || Atom;
 
   return (
     <div className="dataset-tab-container">
