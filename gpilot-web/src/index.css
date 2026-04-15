@@ -4,12 +4,12 @@
   --bg: #000000;
   --bg-secondary: #0d0d0d;
   --bg-tertiary: #171717;
-  --border: #2a1f3d;
+  --border: #2e2b25;
   --code-bg: #0d0d0d;
-  --accent: #a855f7;
-  --accent-bg: rgba(168, 85, 247, 0.12);
-  --accent-border: rgba(168, 85, 247, 0.45);
-  --user-msg-bg: #1a0f2e;
+  --accent: #e8d9b5;
+  --accent-bg: rgba(232, 217, 181, 0.10);
+  --accent-border: rgba(232, 217, 181, 0.35);
+  --user-msg-bg: #1c1a14;
   --assistant-msg-bg: #111111;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   --sidebar-width: 280px;
@@ -97,7 +97,7 @@ body {
   gap: 8px;
   padding: 10px 16px;
   background: var(--accent);
-  color: white;
+  color: #0d0d0d;
   border: none;
   border-radius: 8px;
   font-size: 14px;
@@ -107,7 +107,7 @@ body {
 }
 
 .new-chat-btn:hover {
-  background: #9333ea;
+  background: #d4c49a;
 }
 
 .dataset-menu {
@@ -400,12 +400,12 @@ body {
 
 .message.user .message-avatar {
   background: var(--accent);
-  color: white;
+  color: #0d0d0d;
 }
 
 .message.assistant .message-avatar {
   background: var(--accent);
-  color: white;
+  color: #0d0d0d;
 }
 
 .message-content {
@@ -523,14 +523,14 @@ body {
   background: var(--accent);
   border: none;
   border-radius: 8px;
-  color: white;
+  color: #0d0d0d;
   cursor: pointer;
   transition: all 0.2s;
   flex-shrink: 0;
 }
 
 .send-btn:hover:not(:disabled) {
-  background: #9333ea;
+  background: #d4c49a;
 }
 
 .send-btn:disabled {

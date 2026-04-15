@@ -90,8 +90,8 @@
 }
 
 .lp-nav-cta:hover {
-  background: #5558e3;
-  box-shadow: 0 0 18px rgba(99, 102, 241, 0.35);
+  background: #d4c49a;
+  box-shadow: 0 0 18px rgba(232, 217, 181, 0.30);
 }
 
 /* ── Hero ────────────────────────────────────────── */
@@ -187,8 +187,8 @@
 }
 
 .lp-btn-primary:hover {
-  background: #5558e3;
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  background: #d4c49a;
+  box-shadow: 0 0 20px rgba(232, 217, 181, 0.35);
   transform: translateY(-1px);
 }
 
