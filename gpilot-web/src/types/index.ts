@@ -21,7 +21,7 @@ export interface Chat {
 }
 
 export const DATASETS: Dataset[] = [
-  { id: 'general', name: 'General', icon: 'MessageSquare', color: '#e8d9b5' },
+  { id: 'general', name: 'General', icon: 'MessageSquare', color: '#2dd4bf' },
   { id: 'code', name: 'Code', icon: 'Code', color: '#22c55e' },
   { id: 'docs', name: 'Documentation', icon: 'FileText', color: '#f59e0b' },
   { id: 'data', name: 'Data Analysis', icon: 'BarChart', color: '#ec4899' },

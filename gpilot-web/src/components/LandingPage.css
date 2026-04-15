@@ -78,7 +78,7 @@
 .lp-nav-cta {
   padding: 0.55rem 1.2rem;
   background: var(--accent);
-  color: #fff;
+  color: #0b0f19;
   border: none;
   border-radius: 6px;
   font-family: var(--mono);
@@ -90,8 +90,8 @@
 }
 
 .lp-nav-cta:hover {
-  background: #d4c49a;
-  box-shadow: 0 0 18px rgba(232, 217, 181, 0.30);
+  background: #14b8a6;
+  box-shadow: 0 0 18px rgba(45, 212, 191, 0.30);
 }
 
 /* ── Hero ────────────────────────────────────────── */
@@ -113,7 +113,7 @@
   transform: translateX(-50%);
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.07) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -123,7 +123,7 @@
   height: 80px;
   color: var(--accent);
   margin-bottom: 2rem;
-  filter: drop-shadow(0 0 32px rgba(99, 102, 241, 0.3));
+  filter: drop-shadow(0 0 32px rgba(45, 212, 191, 0.3));
   animation: lp-float 6s ease-in-out infinite;
 }
 
@@ -174,7 +174,7 @@
   gap: 0.5rem;
   padding: 0.72rem 1.75rem;
   background: var(--accent);
-  color: #fff;
+  color: #0b0f19;
   border: none;
   border-radius: 6px;
   font-family: var(--mono);
@@ -187,8 +187,8 @@
 }
 
 .lp-btn-primary:hover {
-  background: #d4c49a;
-  box-shadow: 0 0 20px rgba(232, 217, 181, 0.35);
+  background: #14b8a6;
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.35);
   transform: translateY(-1px);
 }
 
