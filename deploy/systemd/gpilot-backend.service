@@ -1,0 +1,17 @@
+[Unit]
+Description=GPilot FastAPI Backend
+After=network-online.target neo4j-local.service
+Wants=network-online.target neo4j-local.service
+
+[Service]
+Type=simple
+User=username
+Group=username
+WorkingDirectory=/home/username/GPilot/backend
+ExecStart=/home/username/GPilot/backend/start-prod.sh
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

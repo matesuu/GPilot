@@ -4,14 +4,15 @@ GPilot Backend — FastAPI server that wraps PolyG's GraphRAG engine.
 Run from this directory:
     uvicorn main:app --host 0.0.0.0 --port 8080 --reload
 
-Environment variables (set in backend/.env or export in shell):
+Environment variables (set in the repo root .env, backend/.env, or export in shell):
     OPENAI_API_KEY      — required for openai/* models
     DEEPSEEK_API_KEY    — required for deepseek/* models
     NEO4J_URL           — default: neo4j://localhost:7687
     NEO4J_USER          — default: neo4j
+    NEO4J_USERNAME      — accepted alias for NEO4J_USER
     NEO4J_PASSWORD      — default: neo4j1234
     POLYG_DATA_ROOT     — root directory containing dataset subdirs
-                          default: /home/username/PolyG/datasets
+                          default: /home/username/PolyG/dataset
     POLYG_DEFAULT_MODEL — default: openai/gpt-4o-mini
     ALLOWED_ORIGINS     — comma-separated CORS origins, default: *
 """
@@ -32,10 +33,16 @@ from dotenv import load_dotenv
 # Bootstrap: ensure PolyG is importable
 # ---------------------------------------------------------------------------
 POLYG_ROOT = "/home/username/PolyG"
+BACKEND_DIR = os.path.dirname(__file__)
+PROJECT_ROOT = os.path.dirname(BACKEND_DIR)
+
 if POLYG_ROOT not in sys.path:
     sys.path.insert(0, POLYG_ROOT)
 
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
+# Load the project-level .env first so local machine secrets can live at the repo
+# root, then let backend/.env override when explicitly configured there.
+load_dotenv(dotenv_path=os.path.join(PROJECT_ROOT, ".env"))
+load_dotenv(dotenv_path=os.path.join(BACKEND_DIR, ".env"), override=False)
 
 # PolyG imports (after path is set)
 from polyg import GraphRAG, QueryParam          # noqa: E402
@@ -47,12 +54,12 @@ from polyg.storage import Neo4jStorage          # noqa: E402
 logging.basicConfig(level=logging.WARNING)
 logging.getLogger("polyg").setLevel(logging.INFO)
 
-DATA_ROOT    = os.environ.get("POLYG_DATA_ROOT", "/home/username/PolyG/datasets")
+DATA_ROOT    = os.environ.get("POLYG_DATA_ROOT", "/home/username/PolyG/dataset")
 DEFAULT_MODEL = os.environ.get("POLYG_DEFAULT_MODEL", "openai/gpt-4o-mini")
 NEO4J_CONFIG = {
     "neo4j_url":  os.environ.get("NEO4J_URL",      "neo4j://localhost:7687"),
     "neo4j_auth": (
-        os.environ.get("NEO4J_USER",     "neo4j"),
+        os.environ.get("NEO4J_USER", os.environ.get("NEO4J_USERNAME", "neo4j")),
         os.environ.get("NEO4J_PASSWORD", "neo4j1234"),
     ),
 }

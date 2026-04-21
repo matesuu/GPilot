@@ -103,7 +103,21 @@ The Vite dev server proxies all `/api/*` requests to `localhost:8080`, so
 
 ## Production Deployment
 
-For production, build the frontend and serve it statically:
+For production, the browser should call the same-origin `/api` path on Vercel,
+and Vercel should proxy those requests to your backend server using a server-side
+`BACKEND_ORIGIN` environment variable. This keeps the backend URL out of the
+browser bundle and lets you rotate backend hosts without changing the client.
+
+Set this in the Vercel project:
+
+```bash
+BACKEND_ORIGIN=https://your-stable-backend.example.com
+```
+
+The Vercel proxy lives at `gpilot-web/api/[...path].ts`, so the frontend can
+keep using `/api/query` in both local development and production.
+
+To build the frontend locally:
 
 ```bash
 cd gpilot-web
@@ -114,4 +128,5 @@ npm run build
 # app.mount("/", StaticFiles(directory="../gpilot-web/dist", html=True), name="static")
 ```
 
-Set `ALLOWED_ORIGINS=https://your-domain.com` in `backend/.env` when deploying to a real domain.
+Set `ALLOWED_ORIGINS=https://g-pilot.vercel.app` in the backend `.env` when
+serving the frontend from Vercel.

@@ -1,0 +1,20 @@
+[Unit]
+Description=Neo4j Graph Database (Local GPilot Data)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=username
+Group=username
+ExecStart=/usr/share/neo4j/bin/neo4j console
+Restart=always
+RestartSec=10
+TimeoutSec=120
+LimitNOFILE=60000
+Environment=JAVA_HOME=/home/username/java/jdk-21.0.10+7
+Environment=NEO4J_CONF=/home/username/neo4j/conf
+Environment=NEO4J_HOME=/var/lib/neo4j
+
+[Install]
+WantedBy=multi-user.target
