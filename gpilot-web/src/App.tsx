@@ -1,8 +1,10 @@
 import { useState, useCallback } from 'react';
 import { Sidebar, ChatArea, TopBar } from './components';
-import type { Chat, Dataset } from './types';
+import type { Chat } from './types';
 import { DATASETS, generateId } from './types';
 import './App.css';
+
+const DEFAULT_DATASET = DATASETS[0];
 
 function App() {
   const [chats, setChats] = useState<Chat[]>([]);
@@ -11,11 +13,11 @@ function App() {
 
   const selectedChat = chats.find((chat) => chat.id === selectedChatId) || null;
 
-  const handleNewChat = useCallback((dataset: Dataset) => {
+  const handleNewChat = useCallback(() => {
     const newChat: Chat = {
       id: generateId(),
-      title: `New ${dataset.name} Chat`,
-      dataset,
+      title: 'New Chat',
+      dataset: DEFAULT_DATASET,
       messages: [],
       createdAt: new Date(),
     };
@@ -58,7 +60,7 @@ function App() {
 
     setIsLoading(true);
 
-    const datasetId = selectedChat?.dataset.id ?? 'general';
+    const datasetId = selectedChat?.dataset.id ?? DEFAULT_DATASET.id;
     fetch('/api/query', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -106,15 +108,6 @@ function App() {
       });
   }, [selectedChatId, selectedChat?.dataset.id]);
 
-  const handleDatasetChange = useCallback((newDataset: Dataset) => {
-    if (!selectedChatId) return;
-    setChats((prev) =>
-      prev.map((chat) =>
-        chat.id === selectedChatId ? { ...chat, dataset: newDataset } : chat
-      )
-    );
-  }, [selectedChatId]);
-
   return (
     <div className="app">
       <Sidebar
@@ -123,7 +116,6 @@ function App() {
         onSelectChat={handleSelectChat}
         onNewChat={handleNewChat}
         onDeleteChat={handleDeleteChat}
-        datasets={DATASETS}
       />
       <div className="main-wrapper">
         <TopBar />
@@ -131,7 +123,6 @@ function App() {
           <ChatArea
             chat={selectedChat}
             onSendMessage={handleSendMessage}
-            onDatasetChange={handleDatasetChange}
             isLoading={isLoading}
           />
         </main>

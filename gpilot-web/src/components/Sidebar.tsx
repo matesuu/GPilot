@@ -1,14 +1,12 @@
-import { useState } from 'react';
 import { Plus, Bot, Trash2 } from 'lucide-react';
-import type { Chat, Dataset } from '../types';
+import type { Chat } from '../types';
 
 interface SidebarProps {
   chats: Chat[];
   selectedChatId: string | null;
   onSelectChat: (chatId: string) => void;
-  onNewChat: (dataset: Dataset) => void;
+  onNewChat: () => void;
   onDeleteChat: (chatId: string) => void;
-  datasets: Dataset[];
 }
 
 export function Sidebar({
@@ -17,10 +15,7 @@ export function Sidebar({
   onSelectChat,
   onNewChat,
   onDeleteChat,
-  datasets,
 }: SidebarProps) {
-  const [showDatasetMenu, setShowDatasetMenu] = useState(false);
-
   return (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -31,35 +26,10 @@ export function Sidebar({
       </div>
 
       <div className="sidebar-actions">
-        <div className="new-chat-wrapper">
-          <button
-            className="new-chat-btn"
-            onClick={() => setShowDatasetMenu(!showDatasetMenu)}
-          >
-            <Plus size={18} />
-            <span>New Chat</span>
-          </button>
-          {showDatasetMenu && (
-            <div className="dataset-menu">
-              {datasets.map((dataset) => (
-                <button
-                  key={dataset.id}
-                  className="dataset-option"
-                  onClick={() => {
-                    onNewChat(dataset);
-                    setShowDatasetMenu(false);
-                  }}
-                >
-                  <span
-                    className="dataset-dot"
-                    style={{ backgroundColor: dataset.color }}
-                  />
-                  {dataset.name}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
+        <button className="new-chat-btn" onClick={onNewChat}>
+          <Plus size={18} />
+          <span>New Chat</span>
+        </button>
       </div>
 
       <div className="chat-list">
@@ -70,10 +40,6 @@ export function Sidebar({
             onClick={() => onSelectChat(chat.id)}
           >
             <div className="chat-item-content">
-              <span
-                className="chat-dataset-indicator"
-                style={{ backgroundColor: chat.dataset.color }}
-              />
               <span className="chat-title">{chat.title}</span>
             </div>
             <button

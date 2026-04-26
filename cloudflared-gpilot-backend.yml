@@ -1,0 +1,9 @@
+tunnel: 4731bea8-15db-44ea-9df9-48dbe19b0b6e
+credentials-file: /home/username/.cloudflared/4731bea8-15db-44ea-9df9-48dbe19b0b6e.json
+
+ingress:
+  - hostname: gpilot.xyz
+    service: http://localhost:8080
+  - hostname: www.gpilot.xyz
+    service: http://localhost:8080
+  - service: http_status:404

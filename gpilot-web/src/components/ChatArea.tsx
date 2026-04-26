@@ -1,18 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { Bot, User } from 'lucide-react';
-import type { Chat, Dataset } from '../types';
-import { DATASETS } from '../types';
+import type { Chat } from '../types';
 import { ChatInput } from './ChatInput';
-import { DatasetTab } from './DatasetTab';
 
 interface ChatAreaProps {
   chat: Chat | null;
   onSendMessage: (message: string) => void;
-  onDatasetChange: (dataset: Dataset) => void;
   isLoading?: boolean;
 }
 
-export function ChatArea({ chat, onSendMessage, onDatasetChange, isLoading }: ChatAreaProps) {
+export function ChatArea({ chat, onSendMessage, isLoading }: ChatAreaProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,11 +32,6 @@ export function ChatArea({ chat, onSendMessage, onDatasetChange, isLoading }: Ch
     <div className="chat-area">
       <div className="chat-header">
         <h2 className="chat-title">{chat.title}</h2>
-        <DatasetTab
-          dataset={chat.dataset}
-          onDatasetChange={onDatasetChange}
-          datasets={DATASETS}
-        />
       </div>
 
       <div className="messages-container">
@@ -47,9 +39,6 @@ export function ChatArea({ chat, onSendMessage, onDatasetChange, isLoading }: Ch
           <div className="welcome-message">
             <Bot size={48} className="welcome-icon" />
             <h3>Hello! How can I help you today?</h3>
-            <p>
-              You are currently querying the <strong>{chat.dataset.name}</strong> dataset.
-            </p>
           </div>
         ) : (
           chat.messages.map((message) => (

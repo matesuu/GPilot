@@ -86,10 +86,6 @@ body {
   padding: 16px;
 }
 
-.new-chat-wrapper {
-  position: relative;
-}
-
 .new-chat-btn {
   width: 100%;
   display: flex;
@@ -108,46 +104,6 @@ body {
 
 .new-chat-btn:hover {
   background: #14b8a6;
-}
-
-.dataset-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  margin-top: 4px;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 4px;
-  z-index: 100;
-  box-shadow: var(--shadow);
-}
-
-.dataset-option {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  background: transparent;
-  border: none;
-  border-radius: 6px;
-  color: var(--text);
-  font-size: 14px;
-  cursor: pointer;
-  text-align: left;
-}
-
-.dataset-option:hover {
-  background: var(--bg-secondary);
-  color: var(--text-h);
-}
-
-.dataset-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
 }
 
 .chat-list {
@@ -179,15 +135,7 @@ body {
 .chat-item-content {
   display: flex;
   align-items: center;
-  gap: 10px;
   overflow: hidden;
-}
-
-.chat-dataset-indicator {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
 }
 
 .chat-title {
@@ -267,80 +215,6 @@ body {
   font-size: 16px;
   font-weight: 500;
   color: var(--text-h);
-}
-
-.dataset-tab-container {
-  position: relative;
-}
-
-.dataset-tab {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  background: var(--bg-tertiary);
-  border: 2px solid;
-  border-radius: 8px;
-  color: var(--text);
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.dataset-tab:hover {
-  background: var(--bg-secondary);
-}
-
-.dataset-tab svg {
-  transition: transform 0.2s;
-}
-
-.dataset-tab .rotated {
-  transform: rotate(180deg);
-}
-
-.dataset-tab-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: 4px;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 4px;
-  z-index: 100;
-  box-shadow: var(--shadow);
-  min-width: 160px;
-}
-
-.dataset-tab-option {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  background: transparent;
-  border: none;
-  border-radius: 6px;
-  color: var(--text);
-  font-size: 13px;
-  cursor: pointer;
-  text-align: left;
-}
-
-.dataset-tab-option:hover {
-  background: var(--bg-secondary);
-  color: var(--text-h);
-}
-
-.dataset-tab-option.active {
-  background: var(--accent-bg);
-}
-
-.option-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
 }
 
 .messages-container {

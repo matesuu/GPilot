@@ -1,5 +1,4 @@
 export { Sidebar } from './Sidebar';
 export { ChatArea } from './ChatArea';
 export { ChatInput } from './ChatInput';
-export { DatasetTab } from './DatasetTab';
 export { TopBar } from './TopBar';
