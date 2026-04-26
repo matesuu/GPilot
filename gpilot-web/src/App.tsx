@@ -10,6 +10,7 @@ function App() {
   const [chats, setChats] = useState<Chat[]>([]);
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [thinkingStartedAt, setThinkingStartedAt] = useState<number | null>(null);
 
   const selectedChat = chats.find((chat) => chat.id === selectedChatId) || null;
 
@@ -59,6 +60,8 @@ function App() {
     );
 
     setIsLoading(true);
+    const requestStartedAt = Date.now();
+    setThinkingStartedAt(requestStartedAt);
 
     const datasetId = selectedChat?.dataset.id ?? DEFAULT_DATASET.id;
     fetch('/api/query', {
@@ -79,6 +82,7 @@ function App() {
           role: 'assistant' as const,
           content: data.answer,
           timestamp: new Date(),
+          thinkingDurationMs: Date.now() - requestStartedAt,
         };
         setChats((prev) =>
           prev.map((chat) =>
@@ -94,6 +98,7 @@ function App() {
           role: 'assistant' as const,
           content: `⚠️ Error: ${err.message}`,
           timestamp: new Date(),
+          thinkingDurationMs: Date.now() - requestStartedAt,
         };
         setChats((prev) =>
           prev.map((chat) =>
@@ -105,6 +110,7 @@ function App() {
       })
       .finally(() => {
         setIsLoading(false);
+        setThinkingStartedAt(null);
       });
   }, [selectedChatId, selectedChat?.dataset.id]);
 
@@ -124,6 +130,7 @@ function App() {
             chat={selectedChat}
             onSendMessage={handleSendMessage}
             isLoading={isLoading}
+            thinkingStartedAt={thinkingStartedAt}
           />
         </main>
       </div>

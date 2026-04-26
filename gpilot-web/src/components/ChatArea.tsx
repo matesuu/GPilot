@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Bot, User } from 'lucide-react';
 import type { Chat } from '../types';
 import { ChatInput } from './ChatInput';
@@ -7,14 +7,45 @@ interface ChatAreaProps {
   chat: Chat | null;
   onSendMessage: (message: string) => void;
   isLoading?: boolean;
+  thinkingStartedAt?: number | null;
 }
 
-export function ChatArea({ chat, onSendMessage, isLoading }: ChatAreaProps) {
+const formatThinkingTime = (durationMs: number) => {
+  const seconds = durationMs / 1000;
+
+  if (seconds < 10) {
+    return `${seconds.toFixed(1)}s`;
+  }
+
+  if (seconds < 60) {
+    return `${Math.round(seconds)}s`;
+  }
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.round(seconds % 60);
+  return `${minutes}m ${remainingSeconds}s`;
+};
+
+export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: ChatAreaProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [now, setNow] = useState(() => Date.now());
+  const elapsedThinkingMs = thinkingStartedAt ? Math.max(0, now - thinkingStartedAt) : 0;
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chat?.messages]);
+
+  useEffect(() => {
+    if (!thinkingStartedAt) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setNow(Date.now());
+    }, 100);
+
+    return () => window.clearInterval(interval);
+  }, [thinkingStartedAt]);
 
   if (!chat) {
     return (
@@ -61,6 +92,11 @@ export function ChatArea({ chat, onSendMessage, isLoading }: ChatAreaProps) {
                     minute: '2-digit',
                   })}
                 </div>
+                {message.role === 'assistant' && message.thinkingDurationMs != null && (
+                  <div className="thinking-time">
+                    Thought for {formatThinkingTime(message.thinkingDurationMs)}
+                  </div>
+                )}
               </div>
             </div>
           ))
@@ -78,6 +114,11 @@ export function ChatArea({ chat, onSendMessage, isLoading }: ChatAreaProps) {
                   <span></span>
                 </span>
               </div>
+              {thinkingStartedAt && (
+                <div className="thinking-time live">
+                  Thinking for {formatThinkingTime(elapsedThinkingMs)}
+                </div>
+              )}
             </div>
           </div>
         )}
