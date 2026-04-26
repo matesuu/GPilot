@@ -1,10 +1,79 @@
 import { useState, useCallback } from 'react';
 import { Sidebar, ChatArea, TopBar } from './components';
 import type { Chat } from './types';
-import { DATASETS, generateId } from './types';
+import { DATASETS, MAX_QUESTION_LENGTH, generateId } from './types';
 import './App.css';
 
 const DEFAULT_DATASET = DATASETS[0];
+
+const ERROR_MESSAGES = {
+  invalidApiKey: 'Model provider credentials are invalid. Contact the project owner to update the API key.',
+  serverNotRunning: 'GPilot server is not reachable. Start the backend and try again.',
+  neo4jOffline: 'Knowledge database is offline. Start Neo4j and retry.',
+  graphUnavailable: 'Knowledge graph is unavailable for this dataset. Try again later or choose another dataset.',
+  emptyQuestion: 'Type a question before sending.',
+  questionTooLong: 'Question is too long for this model. Shorten it and try again.',
+  datasetUnavailable: 'Selected dataset is not available on the server. Choose another dataset or contact the project owner.',
+  fallback: 'Something went wrong while GPilot was generating a response. Please try again.',
+} as const;
+
+class QueryRequestError extends Error {
+  status?: number;
+
+  constructor(message: string, status?: number) {
+    super(message);
+    this.name = 'QueryRequestError';
+    this.status = status;
+  }
+}
+
+const getErrorDetail = (body: unknown, fallback: string) => {
+  if (body && typeof body === 'object' && 'detail' in body) {
+    const detail = (body as { detail: unknown }).detail;
+    if (typeof detail === 'string') return detail;
+    return JSON.stringify(detail);
+  }
+
+  return fallback;
+};
+
+const getClientErrorMessage = (error: unknown) => {
+  const status = error instanceof QueryRequestError ? error.status : undefined;
+  const detail = error instanceof Error ? error.message : String(error);
+  const normalized = detail.toLowerCase();
+
+  if (normalized.includes('api key') || normalized.includes('unauthorized') || normalized.includes('authentication')) {
+    return ERROR_MESSAGES.invalidApiKey;
+  }
+
+  if (normalized.includes('neo4j') || normalized.includes('bolt') || normalized.includes('7687')) {
+    return ERROR_MESSAGES.neo4jOffline;
+  }
+
+  if (normalized.includes('not available on this server') || normalized.includes('unknown dataset')) {
+    return ERROR_MESSAGES.datasetUnavailable;
+  }
+
+  if (status === 413 || normalized.includes('too long') || normalized.includes('context length') || normalized.includes('maximum context')) {
+    return ERROR_MESSAGES.questionTooLong;
+  }
+
+  if (normalized.includes('knowledge graph') || normalized.includes('graph') || normalized.includes('context')) {
+    return ERROR_MESSAGES.graphUnavailable;
+  }
+
+  if (
+    status === 503 ||
+    normalized.includes('failed to fetch') ||
+    normalized.includes('fetch failed') ||
+    normalized.includes('econnrefused') ||
+    normalized.includes('backend_origin')
+  ) {
+    return ERROR_MESSAGES.serverNotRunning;
+  }
+
+  return ERROR_MESSAGES.fallback;
+};
 
 function App() {
   const [chats, setChats] = useState<Chat[]>([]);
@@ -40,6 +109,9 @@ function App() {
   const handleSendMessage = useCallback((content: string) => {
     if (!selectedChatId) return;
 
+    if (!content.trim()) return;
+    if (content.length > MAX_QUESTION_LENGTH) return;
+
     const userMessage = {
       id: generateId(),
       role: 'user' as const,
@@ -71,8 +143,8 @@ function App() {
     })
       .then(async (res) => {
         if (!res.ok) {
-          const err = await res.json().catch(() => ({ detail: res.statusText }));
-          throw new Error(err.detail ?? res.statusText);
+          const body = await res.json().catch(() => null);
+          throw new QueryRequestError(getErrorDetail(body, res.statusText), res.status);
         }
         return res.json();
       })
@@ -96,9 +168,10 @@ function App() {
         const errorMessage = {
           id: generateId(),
           role: 'assistant' as const,
-          content: `⚠️ Error: ${err.message}`,
+          content: getClientErrorMessage(err),
           timestamp: new Date(),
           thinkingDurationMs: Date.now() - requestStartedAt,
+          isError: true,
         };
         setChats((prev) =>
           prev.map((chat) =>

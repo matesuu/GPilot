@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Send, Loader2 } from 'lucide-react';
+import { MAX_QUESTION_LENGTH } from '../types';
 
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
@@ -9,11 +10,25 @@ interface ChatInputProps {
 
 export function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
   const [input, setInput] = useState('');
+  const [inputError, setInputError] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (input.trim() && !disabled) {
-      onSendMessage(input.trim());
+    const trimmedInput = input.trim();
+
+    if (!trimmedInput) {
+      setInputError('Type a question before sending.');
+      return;
+    }
+
+    if (trimmedInput.length > MAX_QUESTION_LENGTH) {
+      setInputError('Question is too long for this model. Shorten it and try again.');
+      return;
+    }
+
+    if (!disabled) {
+      onSendMessage(trimmedInput);
+      setInputError('');
       setInput('');
     }
   };
@@ -31,7 +46,10 @@ export function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
         <textarea
           className="chat-input"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => {
+            setInput(e.target.value);
+            if (inputError) setInputError('');
+          }}
           onKeyDown={handleKeyDown}
           placeholder="Ask GPilot anything..."
           disabled={disabled}
@@ -40,11 +58,13 @@ export function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
         <button
           type="submit"
           className="send-btn"
-          disabled={!input.trim() || disabled}
+          disabled={disabled}
+          aria-label="Send message"
         >
           {disabled ? <Loader2 size={20} className="spinner" /> : <Send size={20} />}
         </button>
       </div>
+      {inputError && <p className="input-error">{inputError}</p>}
       <p className="input-hint">
         Press Enter to send, Shift + Enter for new line
       </p>

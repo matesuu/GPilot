@@ -4,6 +4,7 @@ export interface Message {
   content: string;
   timestamp: Date;
   thinkingDurationMs?: number;
+  isError?: boolean;
 }
 
 export interface Dataset {
@@ -27,3 +28,5 @@ export const DATASETS: Dataset[] = [
 ];
 
 export const generateId = () => Math.random().toString(36).substring(2, 11);
+
+export const MAX_QUESTION_LENGTH = 12000;

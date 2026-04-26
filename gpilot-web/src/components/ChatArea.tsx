@@ -75,7 +75,7 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
           chat.messages.map((message) => (
             <div
               key={message.id}
-              className={`message ${message.role === 'user' ? 'user' : 'assistant'}`}
+              className={`message ${message.role === 'user' ? 'user' : 'assistant'}${message.isError ? ' error' : ''}`}
             >
               <div className="message-avatar">
                 {message.role === 'user' ? (

@@ -305,6 +305,11 @@ body {
   border-bottom-left-radius: 4px;
 }
 
+.message.error .message-text {
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: rgba(127, 29, 29, 0.28);
+}
+
 .message-time {
   font-size: 11px;
   color: var(--text);
@@ -442,6 +447,13 @@ body {
   margin-top: 8px;
   text-align: center;
   opacity: 0.6;
+}
+
+.input-error {
+  margin: 8px 0 0;
+  color: #fca5a5;
+  font-size: 12px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
