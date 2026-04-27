@@ -22,6 +22,7 @@ Browser  ←→  React frontend (Vite, port 5173)
 2. **Neo4j** running on `localhost:7687`
 3. **Conda** environment `polyg` created (`python=3.12`)
 4. **API key** for at least one supported model (OpenAI or DeepSeek)
+5. **Supabase project** for browser chat history storage
 
 ---
 
@@ -49,6 +50,8 @@ bash start.sh
 
 ```bash
 cd GPilot/gpilot-web
+cp .env.example .env
+# Edit .env — add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY
 npm install
 npm run dev
 # → Vite dev server at http://localhost:5173
@@ -56,6 +59,19 @@ npm run dev
 
 The Vite dev server proxies all `/api/*` requests to `localhost:8080`, so
 **no CORS issues** during development.
+
+### Supabase chat history
+
+Run `supabase/chat_history.sql` in your Supabase SQL editor. The app stores one
+shared browser-visible history in `public.chat_history`; there is no auth or
+per-user isolation. Use this only for a private single-user project.
+
+Frontend env vars:
+
+```bash
+VITE_SUPABASE_URL=https://your-project-ref.supabase.co
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
 
 ---
 

@@ -1,7 +1,13 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Sidebar, ChatArea, TopBar } from './components';
 import type { Chat } from './types';
 import { DATASETS, MAX_QUESTION_LENGTH, generateId } from './types';
+import {
+  deleteChat,
+  isChatHistoryConfigured,
+  loadChatHistory,
+  saveChat,
+} from './lib/supabaseChatHistory';
 import './App.css';
 
 const DEFAULT_DATASET = DATASETS[0];
@@ -80,8 +86,48 @@ function App() {
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [thinkingStartedAt, setThinkingStartedAt] = useState<number | null>(null);
+  const [historyStatus, setHistoryStatus] = useState(
+    isChatHistoryConfigured ? 'Loading history...' : 'History not configured'
+  );
 
   const selectedChat = chats.find((chat) => chat.id === selectedChatId) || null;
+
+  useEffect(() => {
+    let isCurrent = true;
+
+    loadChatHistory()
+      .then((loadedChats) => {
+        if (!isCurrent) return;
+
+        setChats(loadedChats);
+        setSelectedChatId(loadedChats[0]?.id ?? null);
+        setHistoryStatus(
+          isChatHistoryConfigured
+            ? 'History synced'
+            : 'Add Supabase env vars to sync history'
+        );
+      })
+      .catch((error) => {
+        if (!isCurrent) return;
+        console.error('Failed to load chat history:', error);
+        setHistoryStatus('History sync failed');
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
+
+  const persistChat = useCallback((chat: Chat) => {
+    saveChat(chat)
+      .then(() => {
+        if (isChatHistoryConfigured) setHistoryStatus('History synced');
+      })
+      .catch((error) => {
+        console.error('Failed to save chat:', error);
+        setHistoryStatus('History sync failed');
+      });
+  }, []);
 
   const handleNewChat = useCallback(() => {
     const newChat: Chat = {
@@ -93,7 +139,9 @@ function App() {
     };
     setChats((prev) => [newChat, ...prev]);
     setSelectedChatId(newChat.id);
-  }, []);
+    setHistoryStatus(isChatHistoryConfigured ? 'Saving history...' : 'Add Supabase env vars to sync history');
+    persistChat(newChat);
+  }, [persistChat]);
 
   const handleSelectChat = useCallback((chatId: string) => {
     setSelectedChatId(chatId);
@@ -104,10 +152,19 @@ function App() {
     if (selectedChatId === chatId) {
       setSelectedChatId(null);
     }
+    setHistoryStatus(isChatHistoryConfigured ? 'Saving history...' : 'Add Supabase env vars to sync history');
+    deleteChat(chatId)
+      .then(() => {
+        if (isChatHistoryConfigured) setHistoryStatus('History synced');
+      })
+      .catch((error) => {
+        console.error('Failed to delete chat:', error);
+        setHistoryStatus('History sync failed');
+      });
   }, [selectedChatId]);
 
   const handleSendMessage = useCallback((content: string) => {
-    if (!selectedChatId) return;
+    if (!selectedChatId || !selectedChat) return;
 
     if (!content.trim()) return;
     if (content.length > MAX_QUESTION_LENGTH) return;
@@ -119,17 +176,17 @@ function App() {
       timestamp: new Date(),
     };
 
+    const chatWithUserMessage = {
+      ...selectedChat,
+      title: selectedChat.messages.length === 0 ? content.slice(0, 30) + '...' : selectedChat.title,
+      messages: [...selectedChat.messages, userMessage],
+    };
+
     setChats((prev) =>
-      prev.map((chat) =>
-        chat.id === selectedChatId
-          ? {
-              ...chat,
-              title: chat.messages.length === 0 ? content.slice(0, 30) + '...' : chat.title,
-              messages: [...chat.messages, userMessage],
-            }
-          : chat
-      )
+      prev.map((chat) => (chat.id === selectedChatId ? chatWithUserMessage : chat))
     );
+    setHistoryStatus(isChatHistoryConfigured ? 'Saving history...' : 'Add Supabase env vars to sync history');
+    persistChat(chatWithUserMessage);
 
     setIsLoading(true);
     const requestStartedAt = Date.now();
@@ -156,13 +213,15 @@ function App() {
           timestamp: new Date(),
           thinkingDurationMs: Date.now() - requestStartedAt,
         };
+        const chatWithAssistantMessage = {
+          ...chatWithUserMessage,
+          messages: [...chatWithUserMessage.messages, assistantMessage],
+        };
         setChats((prev) =>
-          prev.map((chat) =>
-            chat.id === selectedChatId
-              ? { ...chat, messages: [...chat.messages, assistantMessage] }
-              : chat
-          )
+          prev.map((chat) => (chat.id === selectedChatId ? chatWithAssistantMessage : chat))
         );
+        setHistoryStatus(isChatHistoryConfigured ? 'Saving history...' : 'Add Supabase env vars to sync history');
+        persistChat(chatWithAssistantMessage);
       })
       .catch((err: Error) => {
         const errorMessage = {
@@ -173,19 +232,21 @@ function App() {
           thinkingDurationMs: Date.now() - requestStartedAt,
           isError: true,
         };
+        const chatWithErrorMessage = {
+          ...chatWithUserMessage,
+          messages: [...chatWithUserMessage.messages, errorMessage],
+        };
         setChats((prev) =>
-          prev.map((chat) =>
-            chat.id === selectedChatId
-              ? { ...chat, messages: [...chat.messages, errorMessage] }
-              : chat
-          )
+          prev.map((chat) => (chat.id === selectedChatId ? chatWithErrorMessage : chat))
         );
+        setHistoryStatus(isChatHistoryConfigured ? 'Saving history...' : 'Add Supabase env vars to sync history');
+        persistChat(chatWithErrorMessage);
       })
       .finally(() => {
         setIsLoading(false);
         setThinkingStartedAt(null);
       });
-  }, [selectedChatId, selectedChat?.dataset.id]);
+  }, [selectedChat, selectedChatId, persistChat]);
 
   return (
     <div className="app">
@@ -195,6 +256,7 @@ function App() {
         onSelectChat={handleSelectChat}
         onNewChat={handleNewChat}
         onDeleteChat={handleDeleteChat}
+        historyStatus={historyStatus}
       />
       <div className="main-wrapper">
         <TopBar />

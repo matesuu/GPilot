@@ -7,6 +7,7 @@ interface SidebarProps {
   onSelectChat: (chatId: string) => void;
   onNewChat: () => void;
   onDeleteChat: (chatId: string) => void;
+  historyStatus: string;
 }
 
 export function Sidebar({
@@ -15,6 +16,7 @@ export function Sidebar({
   onSelectChat,
   onNewChat,
   onDeleteChat,
+  historyStatus,
 }: SidebarProps) {
   return (
     <div className="sidebar">
@@ -54,6 +56,8 @@ export function Sidebar({
           </div>
         ))}
       </div>
+
+      <div className="history-status">{historyStatus}</div>
     </div>
   );
 }

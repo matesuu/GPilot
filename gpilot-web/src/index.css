@@ -112,6 +112,14 @@ body {
   padding: 8px;
 }
 
+.history-status {
+  padding: 12px 16px 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
 .chat-item {
   display: flex;
   align-items: center;
