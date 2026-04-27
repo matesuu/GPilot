@@ -35,3 +35,8 @@ Thumbs.db
 # Logs
 *.log
 .vercel
+
+# Local generated outputs / tunnel config
+graphify-out/
+cloudflared.yml
+cloudflared-*.yml

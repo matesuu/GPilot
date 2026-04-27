@@ -1,10 +1,6 @@
 declare const process: {
   env: Record<string, string | undefined>;
 };
-declare const Buffer: {
-  from(input: ArrayBuffer): Uint8Array;
-};
-
 const HOP_BY_HOP_HEADERS = new Set([
   "connection",
   "content-length",
@@ -90,7 +86,7 @@ export default async function handler(req: any, res: any) {
       res.setHeader(key, value);
     });
 
-    res.send(Buffer.from(await upstream.arrayBuffer()));
+    res.send(await upstream.text());
   } catch (error) {
     const detail = error instanceof Error ? error.message : "Proxy request failed";
     res.status(503).json({ detail });

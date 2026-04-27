@@ -1,0 +1,15 @@
+[Unit]
+Description=Cloudflare Tunnel for GPilot backend
+After=network-online.target gpilot-backend.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=username
+Group=username
+ExecStart=/usr/local/bin/cloudflared --config /home/username/GPilot/cloudflared-gpilot-backend.yml tunnel run 4731bea8-15db-44ea-9df9-48dbe19b0b6e
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -11,6 +11,12 @@ import {
 import './App.css';
 
 const DEFAULT_DATASET = DATASETS[0];
+const API_BASE_URL = import.meta.env.DEV ? '' : 'https://gpilot.xyz';
+
+const apiUrl = (path: string) => {
+  if (API_BASE_URL) return `${API_BASE_URL}${path}`;
+  return `/api${path}`;
+};
 
 const ERROR_MESSAGES = {
   invalidApiKey: 'Model provider credentials are invalid. Contact the project owner to update the API key.',
@@ -193,7 +199,7 @@ function App() {
     setThinkingStartedAt(requestStartedAt);
 
     const datasetId = selectedChat?.dataset.id ?? DEFAULT_DATASET.id;
-    fetch('/api/query', {
+    fetch(apiUrl('/query'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question: content, dataset_id: datasetId }),
