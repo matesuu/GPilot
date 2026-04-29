@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { User } from 'lucide-react';
 import type { Chat } from '../types';
+import { AsciiGlobeLogo } from './AsciiGlobeLogo';
 import { ChatInput } from './ChatInput';
 
 interface ChatAreaProps {
@@ -51,9 +52,7 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
     return (
       <div className="chat-area empty">
         <div className="empty-state">
-          <pre className="empty-icon" aria-hidden="true">{` __
-(_|
- _|`}</pre>
+          <AsciiGlobeLogo className="empty-icon" />
           <h2>welcome to gpilot</h2>
           <p>select a chat from the sidebar or create a new one to get started.</p>
         </div>
@@ -70,9 +69,7 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
       <div className="messages-container">
         {chat.messages.length === 0 ? (
           <div className="welcome-message">
-            <pre className="welcome-icon" aria-hidden="true">{` __
-(_|
- _|`}</pre>
+            <AsciiGlobeLogo className="welcome-icon" />
             <h3>how can i help?</h3>
           </div>
         ) : (

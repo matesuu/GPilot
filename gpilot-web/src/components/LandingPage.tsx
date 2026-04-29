@@ -1,3 +1,4 @@
+import { AsciiGlobeLogo } from './AsciiGlobeLogo';
 import './LandingPage.css';
 
 interface LandingPageProps {
@@ -11,9 +12,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
       {/* ── Nav ── */}
       <nav className="lp-nav">
         <div className="lp-nav-brand">
-          <pre className="lp-nav-mark" aria-hidden="true">{` __
-(_|
- _|`}</pre>
+          <AsciiGlobeLogo className="lp-nav-mark" />
           <span>gpilot</span>
         </div>
         <div className="lp-nav-links">
@@ -31,15 +30,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
 
       {/* ── Hero ── */}
       <section className="lp-hero">
-        <pre className="lp-hero-logo" aria-label="gpilot ASCII logo">{`  _______
- /  ____/
-|  |  __
-|  | |_ |
-|  |__| |
- \\______|
-     |  |
-  ___|  |
- |______/`}</pre>
+        <AsciiGlobeLogo className="lp-hero-logo" size="hero" />
 
         <h1 className="lp-hero-h1">gpilot</h1>
 

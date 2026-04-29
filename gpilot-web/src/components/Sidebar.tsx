@@ -1,4 +1,5 @@
 import { Plus, Trash2 } from 'lucide-react';
+import { AsciiGlobeLogo } from './AsciiGlobeLogo';
 import type { Chat } from '../types';
 
 interface SidebarProps {
@@ -22,9 +23,7 @@ export function Sidebar({
     <div className="sidebar">
       <div className="sidebar-header">
         <div className="logo">
-          <pre className="logo-mark" aria-hidden="true">{` __
-(_|
- _|`}</pre>
+          <AsciiGlobeLogo className="logo-mark" />
           <span>gpilot</span>
         </div>
       </div>
