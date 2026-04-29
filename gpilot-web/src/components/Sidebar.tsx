@@ -24,7 +24,6 @@ export function Sidebar({
       <div className="sidebar-header">
         <div className="logo">
           <AsciiGlobeLogo className="logo-mark" />
-          <span>gpilot</span>
         </div>
       </div>
 

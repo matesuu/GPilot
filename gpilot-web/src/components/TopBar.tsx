@@ -29,7 +29,6 @@ export function TopBar() {
       <header className="topbar">
         <div className="topbar-brand">
           <AsciiGlobeLogo className="topbar-brand-mark" />
-          <span className="topbar-brand-name">gpilot</span>
         </div>
 
         <div className="topbar-actions">

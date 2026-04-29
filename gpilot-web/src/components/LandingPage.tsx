@@ -13,7 +13,6 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
       <nav className="lp-nav">
         <div className="lp-nav-brand">
           <AsciiGlobeLogo className="lp-nav-mark" />
-          <span>gpilot</span>
         </div>
         <div className="lp-nav-links">
           <a

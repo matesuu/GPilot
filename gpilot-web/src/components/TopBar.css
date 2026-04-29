@@ -37,10 +37,6 @@
   margin: 0;
 }
 
-.topbar-brand-name {
-  letter-spacing: 0;
-}
-
 .topbar-actions {
   display: flex;
   align-items: center;
@@ -188,10 +184,6 @@
   .topbar {
     position: relative;
     left: 0;
-  }
-
-  .topbar-brand-name {
-    display: none;
   }
 
   .topbar-btn {

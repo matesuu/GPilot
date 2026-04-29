@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="4" fill="#050505"/>
-  <rect x="4.5" y="6.5" width="23" height="19" rx="2" fill="none" stroke="#d8d8d8"/>
-  <text x="16" y="11" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7" font-weight="700" fill="#f2f2f2">.-.</text>
-  <text x="16" y="18" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7" font-weight="700" fill="#f2f2f2">(o|)</text>
-  <text x="16" y="25" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7" font-weight="700" fill="#f2f2f2">'-'</text>
-</svg>
