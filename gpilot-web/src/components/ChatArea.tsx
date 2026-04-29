@@ -82,7 +82,7 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
                 {message.role === 'user' ? (
                   <User size={20} />
                 ) : (
-                  <span className="assistant-glyph">g</span>
+                  <AsciiGlobeLogo className="assistant-glyph" />
                 )}
               </div>
               <div className="message-content">
@@ -105,7 +105,7 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
         {isLoading && (
           <div className="message assistant loading">
             <div className="message-avatar">
-              <span className="assistant-glyph">g</span>
+              <AsciiGlobeLogo className="assistant-glyph" />
             </div>
             <div className="message-content">
               <div className="message-text">
