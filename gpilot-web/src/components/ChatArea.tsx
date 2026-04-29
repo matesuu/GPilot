@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import { User } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import type { Chat } from '../types';
 import { AsciiGlobeLogo } from './AsciiGlobeLogo';
 import { ChatInput } from './ChatInput';
@@ -11,42 +10,12 @@ interface ChatAreaProps {
   thinkingStartedAt?: number | null;
 }
 
-const formatThinkingTime = (durationMs: number) => {
-  const seconds = durationMs / 1000;
-
-  if (seconds < 10) {
-    return `${seconds.toFixed(1)}s`;
-  }
-
-  if (seconds < 60) {
-    return `${Math.round(seconds)}s`;
-  }
-
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = Math.round(seconds % 60);
-  return `${minutes}m ${remainingSeconds}s`;
-};
-
-export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: ChatAreaProps) {
+export function ChatArea({ chat, onSendMessage, isLoading }: ChatAreaProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const [now, setNow] = useState(() => Date.now());
-  const elapsedThinkingMs = thinkingStartedAt ? Math.max(0, now - thinkingStartedAt) : 0;
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chat?.messages]);
-
-  useEffect(() => {
-    if (!thinkingStartedAt) {
-      return;
-    }
-
-    const interval = window.setInterval(() => {
-      setNow(Date.now());
-    }, 100);
-
-    return () => window.clearInterval(interval);
-  }, [thinkingStartedAt]);
 
   if (!chat) {
     return (
@@ -78,35 +47,14 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
               key={message.id}
               className={`message ${message.role === 'user' ? 'user' : 'assistant'}${message.isError ? ' error' : ''}`}
             >
-              <div className="message-avatar">
-                {message.role === 'user' ? (
-                  <User size={20} />
-                ) : (
-                  <AsciiGlobeLogo className="assistant-glyph" />
-                )}
-              </div>
               <div className="message-content">
                 <div className="message-text">{message.content}</div>
-                <div className="message-time">
-                  {message.timestamp.toLocaleTimeString([], {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })}
-                </div>
-                {message.role === 'assistant' && message.thinkingDurationMs != null && (
-                  <div className="thinking-time">
-                    Thought for {formatThinkingTime(message.thinkingDurationMs)}
-                  </div>
-                )}
               </div>
             </div>
           ))
         )}
         {isLoading && (
           <div className="message assistant loading">
-            <div className="message-avatar">
-              <AsciiGlobeLogo className="assistant-glyph" />
-            </div>
             <div className="message-content">
               <div className="message-text">
                 <span className="typing-indicator">
@@ -115,11 +63,6 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
                   <span></span>
                 </span>
               </div>
-              {thinkingStartedAt && (
-                <div className="thinking-time live">
-                  Thinking for {formatThinkingTime(elapsedThinkingMs)}
-                </div>
-              )}
             </div>
           </div>
         )}

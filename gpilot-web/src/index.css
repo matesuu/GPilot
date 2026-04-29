@@ -282,10 +282,10 @@ textarea {
 .messages-container {
   flex: 1;
   overflow-y: auto;
-  padding: 24px;
+  padding: 28px 24px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 .welcome-message {
@@ -309,46 +309,15 @@ textarea {
 
 .message {
   display: flex;
-  gap: 10px;
-  max-width: min(820px, 88%);
+  max-width: min(740px, 84%);
 }
 
 .message.user {
   margin-left: auto;
-  flex-direction: row-reverse;
 }
 
-.message-avatar {
-  width: 30px;
-  height: 30px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  background: var(--bg-tertiary);
-  color: var(--text-m);
-}
-
-.assistant-glyph {
-  font-family: var(--mono);
-  font-size: 7px;
-  font-weight: 700;
-  color: var(--text-h);
-  line-height: 1;
-  margin: 0;
-}
-
-.message.user .message-avatar {
-  background: #e9e9e9;
-  border-color: #e9e9e9;
-  color: #050505;
-}
-
-.message.assistant .message-avatar {
-  background: #0d0d0f;
-  border-color: var(--border-strong);
+.message.assistant {
+  margin-right: auto;
 }
 
 .message-content {
@@ -357,55 +326,33 @@ textarea {
 }
 
 .message-text {
-  padding: 11px 13px;
-  border: 1px solid var(--border);
-  border-radius: 7px;
+  padding: 10px 13px;
+  border: 1px solid #202024;
+  border-radius: 16px;
   font-size: 13px;
-  line-height: 1.65;
+  line-height: 1.6;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+  background: #080809;
+  color: var(--text-m);
 }
 
 .message.user .message-text {
-  background: var(--user-msg-bg);
+  background: #111114;
   color: var(--text-h);
-  border-color: var(--border-strong);
+  border-color: #2c2c31;
+  border-bottom-right-radius: 5px;
 }
 
 .message.assistant .message-text {
-  background: var(--assistant-msg-bg);
+  background: #080809;
   color: var(--text-m);
+  border-bottom-left-radius: 5px;
 }
 
 .message.error .message-text {
   border-color: rgba(255, 255, 255, 0.36);
   background: rgba(255, 255, 255, 0.08);
-  color: var(--text-h);
-}
-
-.message-time {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: #737373;
-  margin-top: 4px;
-  padding: 0 2px;
-}
-
-.message.user .message-time {
-  text-align: right;
-}
-
-.thinking-time {
-  width: fit-content;
-  margin-top: 6px;
-  padding: 0 2px;
-  color: #858585;
-  font-family: var(--mono);
-  font-size: 10px;
-  line-height: 1.3;
-}
-
-.thinking-time.live {
   color: var(--text-h);
 }
 
