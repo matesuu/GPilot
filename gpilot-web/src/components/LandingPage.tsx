@@ -11,8 +11,10 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
       {/* ── Nav ── */}
       <nav className="lp-nav">
         <div className="lp-nav-brand">
-          <span className="lp-nav-mark" aria-hidden="true">[G&gt;]</span>
-          <span>GPilot</span>
+          <pre className="lp-nav-mark" aria-hidden="true">{` __
+(_|
+ _|`}</pre>
+          <span>gpilot</span>
         </div>
         <div className="lp-nav-links">
           <a
@@ -20,20 +22,26 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            GitHub
+            github
           </a>
-          <a href="#features">Features</a>
-          <button className="lp-nav-cta" onClick={onLaunch}>&gt;_ Launch App</button>
+          <a href="#features">features</a>
+          <button className="lp-nav-cta" onClick={onLaunch}>&gt;_ launch app</button>
         </div>
       </nav>
 
       {/* ── Hero ── */}
       <section className="lp-hero">
-        <pre className="lp-hero-logo" aria-label="GPilot ASCII logo">{`+-----+
-| G>P |
-+-----+`}</pre>
+        <pre className="lp-hero-logo" aria-label="gpilot ASCII logo">{`  _______
+ /  ____/
+|  |  __
+|  | |_ |
+|  |__| |
+ \\______|
+     |  |
+  ___|  |
+ |______/`}</pre>
 
-        <h1 className="lp-hero-h1">GPilot</h1>
+        <h1 className="lp-hero-h1">gpilot</h1>
 
         <p className="lp-tagline">
           RAG-powered chat for long-context LLMs.
@@ -45,7 +53,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
 
         <div className="lp-hero-actions">
           <button className="lp-btn-primary" onClick={onLaunch}>
-            &gt;_ Get Started
+            &gt;_ get started
           </button>
           <a
             className="lp-btn-secondary"
@@ -53,7 +61,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            View PolyG Source
+            view polyg source
           </a>
         </div>
       </section>
@@ -62,7 +70,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
       <section className="lp-features" id="features">
         <div className="lp-feature">
           <div className="lp-feature-icon">&gt;_</div>
-          <h3>RAG Retrieval</h3>
+          <h3>rag retrieval</h3>
           <p>
             PolyG traverses a property graph at query time to surface
             semantically and structurally relevant chunks — not just nearest
@@ -72,9 +80,9 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
 
         <div className="lp-feature">
           <div className="lp-feature-icon">{ }</div>
-          <h3>Long-Context Optimised</h3>
+          <h3>long-context optimised</h3>
           <p>
-            Even million-token windows dilute attention. GPilot injects only
+            Even million-token windows dilute attention. gpilot injects only
             the retrieved passages so the model stays focused regardless of
             corpus size.
           </p>
@@ -82,7 +90,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
 
         <div className="lp-feature">
           <div className="lp-feature-icon">~/</div>
-          <h3>Dataset-Aware Chat</h3>
+          <h3>dataset-aware chat</h3>
           <p>
             Switch between General, Code, Docs, Data Analysis, and Science
             scopes mid-session — each backed by its own retrieval index.
@@ -92,14 +100,14 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
 
       {/* ── Footer ── */}
       <footer className="lp-footer">
-        <span className="lp-footer-left">© 2025 GPilot</span>
+        <span className="lp-footer-left">© 2025 gpilot</span>
         <div className="lp-footer-links">
           <a
             href="https://github.com/Liu-rj/PolyG/tree/main"
             target="_blank"
             rel="noopener noreferrer"
           >
-            PolyG on GitHub
+            polyg on github
           </a>
           <a
             href="https://github.com/Liu-rj/PolyG/tree/main"

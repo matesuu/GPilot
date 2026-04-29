@@ -20,13 +20,13 @@ const apiUrl = (path: string) => {
 
 const ERROR_MESSAGES = {
   invalidApiKey: 'Model provider credentials are invalid. Contact the project owner to update the API key.',
-  serverNotRunning: 'GPilot server is not reachable. Start the backend and try again.',
+  serverNotRunning: 'gpilot server is not reachable. Start the backend and try again.',
   neo4jOffline: 'Knowledge database is offline. Start Neo4j and retry.',
   graphUnavailable: 'Knowledge graph is unavailable for this dataset. Try again later or choose another dataset.',
   emptyQuestion: 'Type a question before sending.',
   questionTooLong: 'Question is too long for this model. Shorten it and try again.',
   datasetUnavailable: 'Selected dataset is not available on the server. Choose another dataset or contact the project owner.',
-  fallback: 'Something went wrong while GPilot was generating a response. Please try again.',
+  fallback: 'Something went wrong while gpilot was generating a response. Please try again.',
 } as const;
 
 class QueryRequestError extends Error {
@@ -138,7 +138,7 @@ function App() {
   const handleNewChat = useCallback(() => {
     const newChat: Chat = {
       id: generateId(),
-      title: 'New Chat',
+      title: 'new chat',
       dataset: DEFAULT_DATASET,
       messages: [],
       createdAt: new Date(),

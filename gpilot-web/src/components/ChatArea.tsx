@@ -51,9 +51,11 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
     return (
       <div className="chat-area empty">
         <div className="empty-state">
-          <div className="empty-icon" aria-hidden="true">[G&gt;]</div>
-          <h2>Welcome to GPilot</h2>
-          <p>Select a chat from the sidebar or create a new one to get started.</p>
+          <pre className="empty-icon" aria-hidden="true">{` __
+(_|
+ _|`}</pre>
+          <h2>welcome to gpilot</h2>
+          <p>select a chat from the sidebar or create a new one to get started.</p>
         </div>
       </div>
     );
@@ -68,8 +70,10 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
       <div className="messages-container">
         {chat.messages.length === 0 ? (
           <div className="welcome-message">
-            <div className="welcome-icon" aria-hidden="true">[G&gt;]</div>
-            <h3>Hello! How can I help you today?</h3>
+            <pre className="welcome-icon" aria-hidden="true">{` __
+(_|
+ _|`}</pre>
+            <h3>how can i help?</h3>
           </div>
         ) : (
           chat.messages.map((message) => (
@@ -81,7 +85,7 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
                 {message.role === 'user' ? (
                   <User size={20} />
                 ) : (
-                  <span className="assistant-glyph">G&gt;</span>
+                  <span className="assistant-glyph">g</span>
                 )}
               </div>
               <div className="message-content">
@@ -104,7 +108,7 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
         {isLoading && (
           <div className="message assistant loading">
             <div className="message-avatar">
-              <span className="assistant-glyph">G&gt;</span>
+              <span className="assistant-glyph">g</span>
             </div>
             <div className="message-content">
               <div className="message-text">

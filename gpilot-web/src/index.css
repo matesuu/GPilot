@@ -95,13 +95,16 @@ textarea {
 .logo-mark {
   display: inline-grid;
   place-items: center;
-  width: 40px;
-  height: 28px;
+  width: 42px;
+  height: 34px;
   border: 1px solid var(--border-strong);
   border-radius: 4px;
   background: #080809;
   color: var(--accent);
-  font-size: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 0.86;
+  margin: 0;
 }
 
 .sidebar-actions {
@@ -234,7 +237,7 @@ textarea {
   display: inline-grid;
   place-items: center;
   min-width: 54px;
-  height: 34px;
+  height: 42px;
   margin-bottom: 16px;
   padding: 0 12px;
   border: 1px solid var(--border-strong);
@@ -244,6 +247,7 @@ textarea {
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 700;
+  line-height: 0.9;
 }
 
 .empty-state h2 {

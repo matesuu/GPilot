@@ -5,17 +5,17 @@ import './TopBar.css';
 const FEATURES = [
   {
     icon: '>_',
-    title: 'RAG Retrieval',
+    title: 'rag retrieval',
     desc: 'PolyG traverses a property graph at query time to surface semantically and structurally relevant chunks — not just nearest neighbours — before every LLM call.',
   },
   {
     icon: '{ }',
-    title: 'Long-Context Optimised',
-    desc: 'Even million-token windows dilute attention. GPilot injects only the retrieved passages so the model stays focused regardless of corpus size.',
+    title: 'long-context optimised',
+    desc: 'Even million-token windows dilute attention. gpilot injects only the retrieved passages so the model stays focused regardless of corpus size.',
   },
   {
     icon: '~/',
-    title: 'Dataset-Aware Chat',
+    title: 'dataset-aware chat',
     desc: 'Switch between General, Code, Docs, Data Analysis, and Science scopes mid-session — each backed by its own retrieval index.',
   },
 ];
@@ -27,8 +27,10 @@ export function TopBar() {
     <>
       <header className="topbar">
         <div className="topbar-brand">
-          <span className="topbar-brand-mark" aria-hidden="true">[G&gt;]</span>
-          <span className="topbar-brand-name">GPilot</span>
+          <pre className="topbar-brand-mark" aria-hidden="true">{` __
+(_|
+ _|`}</pre>
+          <span className="topbar-brand-name">gpilot</span>
         </div>
 
         <div className="topbar-actions">
@@ -37,7 +39,7 @@ export function TopBar() {
             onClick={() => setFeaturesOpen(true)}
           >
             <Zap size={15} />
-            Features
+            features
           </button>
 
           <a
@@ -47,7 +49,7 @@ export function TopBar() {
             rel="noopener noreferrer"
           >
             <GitBranch size={15} />
-            PolyG on GitHub
+            polyg on github
           </a>
         </div>
       </header>
@@ -60,10 +62,10 @@ export function TopBar() {
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
-            aria-label="GPilot Features"
+            aria-label="gpilot features"
           >
             <div className="feat-modal-header">
-              <h2 className="feat-modal-title">GPilot Features</h2>
+              <h2 className="feat-modal-title">gpilot features</h2>
               <button
                 className="feat-close-btn"
                 onClick={() => setFeaturesOpen(false)}

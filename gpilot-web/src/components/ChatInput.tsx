@@ -51,7 +51,7 @@ export function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
             if (inputError) setInputError('');
           }}
           onKeyDown={handleKeyDown}
-          placeholder="Ask GPilot anything..."
+          placeholder="ask gpilot anything..."
           disabled={disabled}
           rows={1}
         />

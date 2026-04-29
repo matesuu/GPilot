@@ -22,15 +22,17 @@ export function Sidebar({
     <div className="sidebar">
       <div className="sidebar-header">
         <div className="logo">
-          <span className="logo-mark" aria-hidden="true">[G&gt;]</span>
-          <span>GPilot</span>
+          <pre className="logo-mark" aria-hidden="true">{` __
+(_|
+ _|`}</pre>
+          <span>gpilot</span>
         </div>
       </div>
 
       <div className="sidebar-actions">
         <button className="new-chat-btn" onClick={onNewChat}>
           <Plus size={18} />
-          <span>New Chat</span>
+          <span>new chat</span>
         </button>
       </div>
 
