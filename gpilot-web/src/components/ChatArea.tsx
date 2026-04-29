@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Bot, User } from 'lucide-react';
+import { User } from 'lucide-react';
 import type { Chat } from '../types';
 import { ChatInput } from './ChatInput';
 
@@ -51,7 +51,7 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
     return (
       <div className="chat-area empty">
         <div className="empty-state">
-          <Bot size={64} className="empty-icon" />
+          <div className="empty-icon" aria-hidden="true">[G&gt;]</div>
           <h2>Welcome to GPilot</h2>
           <p>Select a chat from the sidebar or create a new one to get started.</p>
         </div>
@@ -68,7 +68,7 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
       <div className="messages-container">
         {chat.messages.length === 0 ? (
           <div className="welcome-message">
-            <Bot size={48} className="welcome-icon" />
+            <div className="welcome-icon" aria-hidden="true">[G&gt;]</div>
             <h3>Hello! How can I help you today?</h3>
           </div>
         ) : (
@@ -81,7 +81,7 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
                 {message.role === 'user' ? (
                   <User size={20} />
                 ) : (
-                  <Bot size={20} />
+                  <span className="assistant-glyph">G&gt;</span>
                 )}
               </div>
               <div className="message-content">
@@ -104,7 +104,7 @@ export function ChatArea({ chat, onSendMessage, isLoading, thinkingStartedAt }: 
         {isLoading && (
           <div className="message assistant loading">
             <div className="message-avatar">
-              <Bot size={20} />
+              <span className="assistant-glyph">G&gt;</span>
             </div>
             <div className="message-content">
               <div className="message-text">

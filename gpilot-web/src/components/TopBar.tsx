@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bot, GitBranch, X, Zap } from 'lucide-react';
+import { GitBranch, X, Zap } from 'lucide-react';
 import './TopBar.css';
 
 const FEATURES = [
@@ -27,7 +27,7 @@ export function TopBar() {
     <>
       <header className="topbar">
         <div className="topbar-brand">
-          <Bot size={22} className="topbar-brand-icon" />
+          <span className="topbar-brand-mark" aria-hidden="true">[G&gt;]</span>
           <span className="topbar-brand-name">GPilot</span>
         </div>
 

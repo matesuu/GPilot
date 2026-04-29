@@ -1,4 +1,4 @@
-import { Plus, Bot, Trash2 } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 import type { Chat } from '../types';
 
 interface SidebarProps {
@@ -22,7 +22,7 @@ export function Sidebar({
     <div className="sidebar">
       <div className="sidebar-header">
         <div className="logo">
-          <Bot className="logo-icon" />
+          <span className="logo-mark" aria-hidden="true">[G&gt;]</span>
           <span>GPilot</span>
         </div>
       </div>

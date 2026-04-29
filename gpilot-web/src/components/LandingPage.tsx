@@ -1,4 +1,3 @@
-import { Bot } from 'lucide-react';
 import './LandingPage.css';
 
 interface LandingPageProps {
@@ -12,7 +11,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
       {/* ── Nav ── */}
       <nav className="lp-nav">
         <div className="lp-nav-brand">
-          <Bot className="lp-nav-bot-icon" />
+          <span className="lp-nav-mark" aria-hidden="true">[G&gt;]</span>
           <span>GPilot</span>
         </div>
         <div className="lp-nav-links">
@@ -30,9 +29,9 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
 
       {/* ── Hero ── */}
       <section className="lp-hero">
-        <div className="lp-hero-glow" />
-
-        <Bot className="lp-hero-logo" />
+        <pre className="lp-hero-logo" aria-label="GPilot ASCII logo">{`+-----+
+| G>P |
++-----+`}</pre>
 
         <h1 className="lp-hero-h1">GPilot</h1>
 
