@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { GitBranch, X, Zap } from 'lucide-react';
-import { AsciiGlobeLogo } from './AsciiGlobeLogo';
 import './TopBar.css';
 
 const FEATURES = [
@@ -27,10 +26,6 @@ export function TopBar() {
   return (
     <>
       <header className="topbar">
-        <div className="topbar-brand">
-          <AsciiGlobeLogo className="topbar-brand-mark" />
-        </div>
-
         <div className="topbar-actions">
           <button
             className="topbar-btn topbar-btn--features"

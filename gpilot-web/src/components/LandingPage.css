@@ -23,7 +23,7 @@
 .lp-nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--border);
   position: sticky;
@@ -31,31 +31,6 @@
   z-index: 100;
   background: rgba(5, 5, 5, 0.88);
   backdrop-filter: blur(14px);
-}
-
-.lp-nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--text-h);
-  letter-spacing: 0;
-}
-
-.lp-nav-mark {
-  display: inline-grid;
-  place-items: center;
-  width: 62px;
-  height: 34px;
-  border: 1px solid var(--border-strong);
-  border-radius: 4px;
-  background: #080809;
-  color: var(--text-h);
-  font-size: 11px;
-  line-height: 0.86;
-  margin: 0;
 }
 
 .lp-nav-links {
@@ -106,20 +81,6 @@
   min-height: calc(100vh - 174px);
   padding: 5.5rem 2rem 4.5rem;
   position: relative;
-}
-
-.lp-hero-logo {
-  margin: 0 0 2rem;
-  padding: 20px 24px;
-  background: #080809;
-  border: 1px solid var(--border-strong);
-  border-radius: 6px;
-  color: var(--text-h);
-  font-family: var(--mono);
-  font-size: clamp(1.35rem, 3.2vw, 2.6rem);
-  font-weight: 700;
-  line-height: 1.08;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03), var(--shadow);
 }
 
 .lp-hero-h1 {

@@ -1,4 +1,3 @@
-import { AsciiGlobeLogo } from './AsciiGlobeLogo';
 import './LandingPage.css';
 
 interface LandingPageProps {
@@ -11,9 +10,6 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
 
       {/* ── Nav ── */}
       <nav className="lp-nav">
-        <div className="lp-nav-brand">
-          <AsciiGlobeLogo className="lp-nav-mark" />
-        </div>
         <div className="lp-nav-links">
           <a
             href="https://github.com/Liu-rj/PolyG/tree/main"
@@ -29,8 +25,6 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
 
       {/* ── Hero ── */}
       <section className="lp-hero">
-        <AsciiGlobeLogo className="lp-hero-logo" size="hero" />
-
         <h1 className="lp-hero-h1">gpilot</h1>
 
         <p className="lp-tagline">

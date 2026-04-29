@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import type { Chat } from '../types';
-import { AsciiGlobeLogo } from './AsciiGlobeLogo';
 import { ChatInput } from './ChatInput';
 
 interface ChatAreaProps {
@@ -9,6 +8,22 @@ interface ChatAreaProps {
   isLoading?: boolean;
   thinkingStartedAt?: number | null;
 }
+
+const formatThinkingTime = (durationMs: number) => {
+  const seconds = durationMs / 1000;
+
+  if (seconds < 10) {
+    return `${seconds.toFixed(1)}s`;
+  }
+
+  if (seconds < 60) {
+    return `${Math.round(seconds)}s`;
+  }
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.round(seconds % 60);
+  return `${minutes}m ${remainingSeconds}s`;
+};
 
 export function ChatArea({ chat, onSendMessage, isLoading }: ChatAreaProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -21,7 +36,6 @@ export function ChatArea({ chat, onSendMessage, isLoading }: ChatAreaProps) {
     return (
       <div className="chat-area empty">
         <div className="empty-state">
-          <AsciiGlobeLogo className="empty-icon" />
           <h2>welcome to gpilot</h2>
           <p>select a chat from the sidebar or create a new one to get started.</p>
         </div>
@@ -38,7 +52,6 @@ export function ChatArea({ chat, onSendMessage, isLoading }: ChatAreaProps) {
       <div className="messages-container">
         {chat.messages.length === 0 ? (
           <div className="welcome-message">
-            <AsciiGlobeLogo className="welcome-icon" />
             <h3>how can i help?</h3>
           </div>
         ) : (
@@ -49,6 +62,11 @@ export function ChatArea({ chat, onSendMessage, isLoading }: ChatAreaProps) {
             >
               <div className="message-content">
                 <div className="message-text">{message.content}</div>
+                {message.role === 'assistant' && message.thinkingDurationMs != null && (
+                  <div className="thinking-time">
+                    Thought for {formatThinkingTime(message.thinkingDurationMs)}
+                  </div>
+                )}
               </div>
             </div>
           ))
