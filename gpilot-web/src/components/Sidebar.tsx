@@ -1,4 +1,5 @@
 import { Plus, Trash2 } from 'lucide-react';
+import { GraphRagLogo } from './GraphRagLogo';
 import type { Chat } from '../types';
 
 interface SidebarProps {
@@ -20,6 +21,10 @@ export function Sidebar({
 }: SidebarProps) {
   return (
     <div className="sidebar">
+      <div className="sidebar-header">
+        <GraphRagLogo />
+      </div>
+
       <div className="sidebar-actions">
         <button className="new-chat-btn" onClick={onNewChat}>
           <Plus size={18} />

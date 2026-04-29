@@ -6,11 +6,20 @@
   height: 52px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0 18px;
-  background: rgba(11, 11, 12, 0.94);
+  background: #212121;
   border-bottom: 1px solid var(--border);
   z-index: 50;
+}
+
+.topbar-logo .graph-rag-logo-mark {
+  width: 38px;
+  height: 29px;
+}
+
+.topbar-logo .graph-rag-logo-wordmark {
+  font-size: 13px;
 }
 
 .topbar-actions {
@@ -32,7 +41,7 @@
   text-decoration: none;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
   color: var(--text-m);
-  background: #101012;
+  background: #2f2f2f;
   font-family: var(--mono);
 }
 
@@ -60,7 +69,7 @@
 }
 
 .feat-modal {
-  background: #0b0b0c;
+  background: #212121;
   border: 1px solid var(--border-strong);
   border-radius: 8px;
   padding: 22px;
@@ -94,7 +103,7 @@
   justify-content: center;
   width: 30px;
   height: 30px;
-  background: #101012;
+  background: #2f2f2f;
   border: 1px solid var(--border);
   border-radius: 5px;
   color: var(--text);
@@ -134,7 +143,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #101012;
+  background: #2f2f2f;
   border: 1px solid var(--border);
   border-radius: 5px;
   font-family: var(--mono);

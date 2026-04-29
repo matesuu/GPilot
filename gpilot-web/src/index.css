@@ -2,18 +2,18 @@
   --text: #a3a3a3;
   --text-h: #f4f4f5;
   --text-m: #d4d4d8;
-  --bg: #050505;
-  --bg-secondary: #0b0b0c;
-  --bg-tertiary: #141416;
-  --bg-elevated: #1c1c1f;
-  --border: #262629;
-  --border-strong: #3f3f46;
-  --code-bg: #101012;
+  --bg: #212121;
+  --bg-secondary: #171717;
+  --bg-tertiary: #2f2f2f;
+  --bg-elevated: #333333;
+  --border: #3a3a3a;
+  --border-strong: #4a4a4a;
+  --code-bg: #171717;
   --accent: #e7e7e7;
   --accent-bg: rgba(255, 255, 255, 0.07);
   --accent-border: rgba(255, 255, 255, 0.22);
-  --user-msg-bg: #1d1d20;
-  --assistant-msg-bg: #101012;
+  --user-msg-bg: #2f2f2f;
+  --assistant-msg-bg: #212121;
   --shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
   --sidebar-width: 276px;
 
@@ -39,11 +39,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    var(--bg);
-  background-size: 48px 48px;
+  background: var(--bg);
 }
 
 button,
@@ -66,7 +62,7 @@ textarea {
 
 .sidebar {
   width: var(--sidebar-width);
-  background: rgba(11, 11, 12, 0.94);
+  background: #171717;
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -74,6 +70,61 @@ textarea {
   position: fixed;
   left: 0;
   top: 0;
+}
+
+.sidebar-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.graph-rag-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-h);
+}
+
+.graph-rag-logo-mark {
+  width: 42px;
+  height: 32px;
+  color: var(--text-h);
+  overflow: visible;
+}
+
+.graph-rag-logo-bubble,
+.graph-rag-logo-edge,
+.graph-rag-logo-node {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.graph-rag-logo-bubble {
+  stroke-width: 2;
+  opacity: 0.84;
+}
+
+.graph-rag-logo-edge {
+  stroke-width: 1.7;
+  opacity: 0.6;
+}
+
+.graph-rag-logo-node {
+  fill: #2f2f2f;
+  stroke-width: 1.8;
+}
+
+.graph-rag-logo-node--muted {
+  opacity: 0.58;
+}
+
+.graph-rag-logo-wordmark {
+  color: var(--text-h);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
 }
 
 .sidebar-actions {
@@ -187,7 +238,7 @@ textarea {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: rgba(5, 5, 5, 0.9);
+  background: #212121;
 }
 
 .chat-area.empty {
@@ -199,6 +250,18 @@ textarea {
   width: min(420px, calc(100vw - 48px));
   text-align: center;
   color: var(--text);
+}
+
+.empty-logo,
+.welcome-logo {
+  display: inline-flex;
+  margin: 0 0 14px;
+}
+
+.empty-logo .graph-rag-logo-mark,
+.welcome-logo .graph-rag-logo-mark {
+  width: 52px;
+  height: 39px;
 }
 
 .empty-state h2 {
@@ -220,7 +283,7 @@ textarea {
   min-height: 49px;
   padding: 12px 24px;
   border-bottom: 1px solid var(--border);
-  background: rgba(11, 11, 12, 0.9);
+  background: #212121;
 }
 
 .chat-header .chat-title {
@@ -278,25 +341,25 @@ textarea {
 
 .message-text {
   padding: 10px 13px;
-  border: 1px solid #202024;
+  border: 1px solid transparent;
   border-radius: 16px;
   font-size: 13px;
   line-height: 1.6;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  background: #080809;
+  background: #212121;
   color: var(--text-m);
 }
 
 .message.user .message-text {
-  background: #111114;
+  background: #2f2f2f;
   color: var(--text-h);
-  border-color: #2c2c31;
+  border-color: #2f2f2f;
   border-bottom-right-radius: 5px;
 }
 
 .message.assistant .message-text {
-  background: #080809;
+  background: #212121;
   color: var(--text-m);
   border-bottom-left-radius: 5px;
 }

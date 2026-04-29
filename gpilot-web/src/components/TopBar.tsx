@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { GitBranch, X, Zap } from 'lucide-react';
+import { GraphRagLogo } from './GraphRagLogo';
 import './TopBar.css';
 
 const FEATURES = [
@@ -26,6 +27,8 @@ export function TopBar() {
   return (
     <>
       <header className="topbar">
+        <GraphRagLogo className="topbar-logo" />
+
         <div className="topbar-actions">
           <button
             className="topbar-btn topbar-btn--features"

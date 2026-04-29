@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { GraphRagLogo } from './GraphRagLogo';
 import type { Chat } from '../types';
 import { ChatInput } from './ChatInput';
 
@@ -36,6 +37,7 @@ export function ChatArea({ chat, onSendMessage, isLoading }: ChatAreaProps) {
     return (
       <div className="chat-area empty">
         <div className="empty-state">
+          <GraphRagLogo className="empty-logo" showWordmark={false} />
           <h2>welcome to gpilot</h2>
           <p>select a chat from the sidebar or create a new one to get started.</p>
         </div>
@@ -52,6 +54,7 @@ export function ChatArea({ chat, onSendMessage, isLoading }: ChatAreaProps) {
       <div className="messages-container">
         {chat.messages.length === 0 ? (
           <div className="welcome-message">
+            <GraphRagLogo className="welcome-logo" showWordmark={false} />
             <h3>how can i help?</h3>
           </div>
         ) : (

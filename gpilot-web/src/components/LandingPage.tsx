@@ -1,3 +1,4 @@
+import { GraphRagLogo } from './GraphRagLogo';
 import './LandingPage.css';
 
 interface LandingPageProps {
@@ -10,6 +11,8 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
 
       {/* ── Nav ── */}
       <nav className="lp-nav">
+        <GraphRagLogo className="lp-nav-logo" />
+
         <div className="lp-nav-links">
           <a
             href="https://github.com/Liu-rj/PolyG/tree/main"
@@ -25,6 +28,8 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
 
       {/* ── Hero ── */}
       <section className="lp-hero">
+        <GraphRagLogo className="lp-hero-logo" showWordmark={false} />
+
         <h1 className="lp-hero-h1">gpilot</h1>
 
         <p className="lp-tagline">
