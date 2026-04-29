@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { Send, Loader2 } from 'lucide-react';
 import { MAX_QUESTION_LENGTH } from '../types';
 
 interface ChatInputProps {
@@ -61,7 +60,7 @@ export function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
           disabled={disabled}
           aria-label="Send message"
         >
-          {disabled ? <Loader2 size={20} className="spinner" /> : <Send size={20} />}
+          <span className="send-btn-inner" />
         </button>
       </div>
       {inputError && <p className="input-error">{inputError}</p>}

@@ -415,7 +415,7 @@ textarea {
 
 .chat-input-container {
   padding: 14px 24px 20px;
-  background: rgba(11, 11, 12, 0.96);
+  background: #212121;
   border-top: 1px solid var(--border);
 }
 
@@ -423,7 +423,7 @@ textarea {
   display: flex;
   align-items: flex-end;
   gap: 10px;
-  background: #0f0f11;
+  background: #2f2f2f;
   border: 1px solid var(--border);
   border-radius: 7px;
   padding: 8px 9px 8px 12px;
@@ -431,7 +431,7 @@ textarea {
 }
 
 .chat-input-wrapper:focus-within {
-  background: #121214;
+  background: #303030;
   border-color: var(--border-strong);
 }
 
@@ -461,11 +461,18 @@ textarea {
   justify-content: center;
   background: #f2f2f2;
   border: 1px solid #f2f2f2;
-  border-radius: 5px;
-  color: #050505;
+  border-radius: 9px;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, transform 0.15s;
   flex-shrink: 0;
+}
+
+.send-btn-inner {
+  width: 12px;
+  height: 12px;
+  display: block;
+  background: #8a8a8a;
+  border-radius: 4px;
 }
 
 .send-btn:hover:not(:disabled) {
@@ -477,15 +484,6 @@ textarea {
 .send-btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
-}
-
-.spinner {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 .input-hint {
