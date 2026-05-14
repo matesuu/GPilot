@@ -81,12 +81,15 @@ export default async function handler(req: any, res: any) {
 
     res.status(upstream.status);
 
-    upstream.headers.forEach((value, key) => {
-      if (HOP_BY_HOP_HEADERS.has(key.toLowerCase())) return;
-      res.setHeader(key, value);
-    });
+    const body = await upstream.text();
+    if (upstream.headers.get("content-type")?.includes("application/json")) {
+      res.setHeader("cache-control", "no-store");
+      res.json(JSON.parse(body));
+      return;
+    }
 
-    res.send(await upstream.text());
+    res.setHeader("cache-control", "no-store");
+    res.send(body);
   } catch (error) {
     const detail = error instanceof Error ? error.message : "Proxy request failed";
     res.status(503).json({ detail });

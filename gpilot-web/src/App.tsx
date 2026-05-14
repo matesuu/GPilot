@@ -11,10 +11,8 @@ import {
 import './App.css';
 
 const DEFAULT_DATASET = DATASETS[0];
-const API_BASE_URL = import.meta.env.DEV ? '' : 'https://gpilot.xyz';
 
 const apiUrl = (path: string) => {
-  if (API_BASE_URL) return `${API_BASE_URL}${path}`;
   return `/api${path}`;
 };
 
